@@ -1,0 +1,40 @@
+.video-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Para garantir que o vídeo cubra toda a área */
+}
+
+.button-container {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+.button-container button {
+    background-color: rgba(255, 193, 7, 0.8); /* Fundo semitransparente */
+    border: none;
+    border-radius: 5px;
+    color: black;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.button-container button i {
+    margin-right: 5px; /* Espaço entre ícone e texto */
+}
+
+.button-container button:hover {
+    background-color: rgba(255, 193, 7, 1); /* Fundo mais escuro ao passar o mouse */
+}

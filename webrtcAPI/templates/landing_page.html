@@ -1,0 +1,90 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background-color: rgb(218, 131, 218);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 75%; /* Define a largura máxima como 80% da largura disponível */
+            margin: 0 auto; /* Centraliza o contêiner */
+        }
+        h1 {
+            color: #000;
+        }
+        p {
+            color: #333;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Para garantir que o vídeo cubra toda a área */
+        } 
+
+        .video-credit {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        color: rgb(44, 44, 19);
+        font-size: 12px;
+        text-align: right;
+        padding: 5px 10px;
+        border-radius: 5px;
+        z-index: 2; /* Garante que o texto de crédito esteja acima do vídeo */
+    }
+
+        .video-credit a {
+            color: rgb(44, 44, 19);
+            text-decoration: none;
+        }
+        .video-credit a:hover {
+            text-decoration: underline;
+        }   
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay loop muted>
+            <source src="/static/images/video5.mp4" type="video/mp4">
+        </video>
+        <div class="video-credit">
+            Video by <a href="https://www.youtube.com/watch?v=pGbIOC83-So" target="_blank">Leonid Livingstone</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Welcome to Solid-WebRTC</h1>
+        <p>Solid-WebRTC is a powerful API designed to streamline the scheduling and management of video streaming services using WebRTC technology. Whether you need to set up real-time video conferences, webinars, or live streaming events, our platform provides the tools you need to ensure seamless communication and collaboration.</p>
+        <p>Our service offers customizable solutions tailored to your specific needs, allowing you to integrate WebRTC functionalities into your existing applications with ease. From scheduling and notifications to real-time analytics and reporting, Solid-WebRTC empowers you to deliver high-quality video experiences to your users.</p>
+        <p>For more information or to discuss custom solutions, please contact our support team at <a href="mailto:support@solidreturn.dev">support@solidreturn.dev</a>.</p>
+    </div>
+</body>
+
+</html>

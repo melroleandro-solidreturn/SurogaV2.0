@@ -1,0 +1,3 @@
+Webify = Multi-purpose demos + Modular elements & custom cache system (i.e. only loads elements that are used, 2.4x faster) + Live page builder & customizer + GDPR Compliant + WPML (translation ready) + RTL (Arabic, Hebrew, etc.) + 100% Responsive + WooCommerce + Gutenberg Optimized + SEO friendly (rank faster on Google) + 160+ Elements & Modules + Unlimited Layouts + Lifetime free updates.
+
+Webify is a clean, super flexible and fully responsive WordPress Theme (try resizing your browser), suited for business websites and users who want to showcase their work on a neat portfolio site.

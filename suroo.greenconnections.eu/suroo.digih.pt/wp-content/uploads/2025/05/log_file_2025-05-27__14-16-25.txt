@@ -1,0 +1,79 @@
+
+---Downloaded files---
+The import files for: Appics Main were successfully downloaded!
+Initial max execution time = 60
+Files info:
+Site URL = https://suroo.greenconnections.eu
+Data file = /home/digihpt1/suroo.greenconnections.eu/wp-content/themes/appics/lib/ocdi/demo/content.xml
+Widget file = /home/digihpt1/suroo.greenconnections.eu/wp-content/themes/appics/lib/ocdi/demo/widgets.wie
+Customizer file = /home/digihpt1/suroo.greenconnections.eu/wp-content/themes/appics/lib/ocdi/demo/customizer.dat
+Redux files:
+not defined!
+
+---ocdi/before_content_import---
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+Custom Framework file loaded.
+
+---Importing widgets---
+Sidebar : 
+
+Appics Authore - No Title - Imported
+Pesquisar - No Title - Imported
+Appics Recent Posts - Recent Post - Imported
+Categorias - No Title - Imported
+Nuvem de etiquetas - Populer Tags - Imported
+
+Footer Widget : 
+
+Menu de navegação - Usefull Links - Imported
+Menu de navegação - Community - Imported
+
+
+
+---Importing customizer settings---
+Customizer settings import finished!
+
+---ocdi/after_import---
+

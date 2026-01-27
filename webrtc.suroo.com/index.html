@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Suroo Video Stream Plugin</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/8.2.2/adapter.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script type="text/javascript" src="settings.js" ></script>
+<script type="text/javascript" src="Janus.js" ></script>
+<script type="text/javascript" src="mvideoroomtest.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/demo.css" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"/>
+
+<style>
+	body, html {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		overflow: hidden;
+	}
+	.video-background {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		overflow: hidden;
+		z-index: -1;
+	}
+	video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover; /* Para garantir que o vídeo cubra toda a área */
+	}
+	/* Centralizar o link dentro do form-row */
+	.form-row {
+		display: flex;
+		justify-content: center; /* Centraliza horizontalmente */
+		align-items: center; /* Centraliza verticalmente, se necessário */
+	}
+  
+	/* Estilo específico para o link */
+	.form-link {
+		text-decoration: none; /* Remove o sublinhado padrão */
+		color: #007bff; /* Define a cor do link */
+		font-size: 8px; /* Define o tamanho da fonte */
+	}
+  
+	.form-link:hover {
+		text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+	}
+
+	/* Contêiner da moldura */
+	.frame-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 40vh; /* Altura da moldura */
+		width: 50vw; /* Largura da moldura */
+		background-color: #fff; /* Fundo branco */
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidade */
+		border-radius: 10px; /* Bordas arredondadas */
+		padding: 20px;
+		box-sizing: border-box; /* Inclui padding na largura/altura */
+		margin-top: 20%; 
+		margin-left: 20%; 
+	}
+
+	/* Caixa de conteúdo */
+	.content-box {
+		text-align: center; /* Centraliza o texto */
+	}
+
+	/* Estilo do botão */
+	.btn {
+		margin-top: 20px; /* Espaçamento acima do botão */
+		font-size: 1.2em; /* Tamanho maior do texto do botão */
+		padding: 10px 20px; /* Espaçamento interno do botão */
+		border-radius: 5px; /* Bordas arredondadas do botão */
+	}
+
+
+	/* Estilo específico do botão "Start" */
+	.btn-primary {
+		background-color: #11d990; /* Cor de fundo primária */
+		border-color: #11d990; /* Cor da borda */
+	}
+
+	/* Estilo do botão ao passar o mouse */
+	.btn-primary:hover {
+		background-color: #0b9260; /* Cor de fundo ao passar o mouse */
+		border-color: #0b9260; /* Cor da borda ao passar o mouse */
+	}
+
+	/* Estilo da imagem */
+	#header-image {
+		max-width: 100%; /* Garante que a imagem não exceda a largura da caixa */
+		height: auto; /* Mantém a proporção da imagem */
+		margin-bottom: 20px; /* Espaçamento abaixo da imagem */
+	}
+
+	/* Estilo da imagem */
+	#join-image {
+		max-width: 100%; /* Garante que a imagem não exceda a largura da caixa */
+		height: auto; /* Mantém a proporção da imagem */
+		margin-bottom: 20px; /* Espaçamento abaixo da imagem */
+	}
+
+	#registernow {
+		margin-left: 20%; 
+	}
+
+	#toggle-view {
+    	margin-bottom: 20px;
+	}
+
+	.container-fluid {
+		position: relative;
+		width: 100%;
+		height: 100vh; /* Ocupa toda a altura da viewport */
+		overflow: hidden; /* Esconde overflow para a animação do chat */
+	}
+
+	.video-container {
+		height: 100%; /* 80% da altura disponível */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
+
+	.panel {
+		width: 100%;
+	}
+
+	.panel-body {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: calc(100% - 50px); /* Altura descontando a altura da panel-heading */
+		background-color: black; /* Fundo preto para o vídeo */
+		border-radius: 10px;
+	}
+
+	.video-panel video {
+		height: 100%;
+		object-fit: cover; /* Faz o vídeo ocupar o contêiner completamente */
+		border-radius: 10px;
+	}
+
+	.button-container {
+		position: absolute;
+		bottom: 15px;
+		left: 50%;
+		transform: translate(-50%,-40%); /* Centraliza horizontalmente */
+		display: flex;
+		gap: 10px; /* Espaçamento entre os botões */
+		z-index: 10; /* Garante que esteja acima do vídeo */
+	}
+
+	.button-container button,
+	.button-container .btn-group {
+		width: 60px;
+		height: 60px;
+		background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+		border: none;
+		border-radius: 50%; /* Faz o botão ser redondo */
+		color: black;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 20px;
+		cursor: pointer;
+		position: relative;
+	}
+
+	.button-container .btn-group .dropdown-toggle {
+		width: 40px;
+		height: 40px;
+		background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+		border-radius: 50%; /* Faz o botão ser redondo */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 20px;
+		position: relative;
+	}
+	.button-container button i {
+		margin: 0; /* Remove qualquer margem padrão do ícone */
+
+		color: #fff;
+		opacity: 0.9; /* Transparência do ícone */
+	}
+
+	.button-container button:hover,
+	.button-container .btn-group .dropdown-toggle:hover {
+		background-color: rgba(0, 0, 0, 0.4); /* Fundo mais escuro ao passar o mouse */
+	}
+
+	.top-button-container {
+		position: absolute;
+		top: 10px; /* Distância do topo */
+		right: 10px; /* Distância da direita */
+		display: flex;
+		flex-direction: row; /* Alinha os botões em linha */
+		gap: 10px; /* Espaçamento entre os botões */
+		z-index: 10; /* Garante que os botões fiquem sobrepostos ao vídeo */
+	}
+
+	.top-button-container .btn-group .dropdown-toggle {
+		width: 40px;
+		height: 40px;
+		background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+		border-radius: 50%; /* Faz o botão ser redondo */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 20px;
+		position: relative;
+	}
+
+	.top-button-container button {
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	.top-button-container button i {
+		margin: 0; /* Remove qualquer margem padrão do ícone */
+
+		color: #fff;
+		opacity: 0.9; /* Transparência do ícone */
+	}
+
+	.top-button-container button:hover,
+	.top-button-container .btn-group .dropdown-toggle:hover {
+		background-color: rgba(0, 0, 0, 0.4); /* Fundo mais escuro ao passar o mouse */
+	}
+
+	.top-button-container .dropdown-menu {
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		top: 50px;
+		left: -70px;
+	}
+
+	/* Estilizando os itens do dropdown */
+	.top-button-container .dropdown-menu li {
+		padding: 5px 10px;
+		cursor: pointer;
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+
+	#published-image {
+		height: 350px;
+		
+	}
+
+	.chat-container {
+		position: absolute;
+		top: 0;
+		left: -100%; /* Começa fora da tela à esquerda */
+		width: 90%; /* Ajuste conforme necessário */
+		height: 100%;
+		background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semitransparente */
+		transition: left 0.5s ease; /* Animação suave */
+		z-index: 10; /* Sobrepõe ao vídeo */
+	}
+
+	.chat-container.show {
+		left: 0; /* Move o chat para dentro da tela */
+	}
+
+	.chat-content {
+		display: flex;
+		top: 20px;
+		flex-direction: column;
+		gap: 10px;
+		height: 100%; /* Altura máxima do chat com barra de rolagem */
+		overflow-y: auto; /* Adiciona barra de rolagem vertical */
+		padding: 10px;
+		margin-left: 20px; /* Margem à esquerda */
+	}
+
+	#toggle-chat {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		z-index: 20; /* Fica acima do chat */
+	}
+
+	/* Estilizando o botão de fechar o chat */
+	#close-chat {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 20; /* Acima do conteúdo do chat */
+		background-color: rgba(57, 65, 55, 0.8); /* Cor de fundo vermelho */
+		border: none;
+		width: 30px;
+		height: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: white; /* Cor do ícone */
+	}
+
+	#close-chat:hover {
+		background-color: rgba(57, 65, 55, 1); /* Cor de fundo mais intensa ao passar o mouse */
+	}
+
+			/* Estilos gerais para o chat */
+	.chat-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.chat-bubble {
+		max-width: 70%; /* Largura máxima da bolha de chat */
+		padding: 10px;
+		border-radius: 10px;
+	}
+
+	.chat-bubble p {
+		margin: 0;
+	}
+
+	/* Estilos para a bolha de chat azul (enviada pelo Embaixador) */
+	.chat-bubble.blue {
+		background-color: #3498db;
+		color: #fff;
+		align-self: flex-end; /* Alinhar à direita (para mensagens enviadas) */
+		margin-right: 5px; /* Margem à direita */
+	}
+
+	/* Estilos para a bolha de chat branca (enviada pelo Espião Russo) */
+	.chat-bubble.white {
+		background-color: #f1f0f0;
+		color: #333;
+		align-self: flex-start; /* Alinhar à esquerda (para mensagens recebidas) */
+		margin-right: 5px; /* Margem à direita */
+	}
+
+	/* Estilos para a bolha de chat não lida */
+	.chat-bubble.blue p[style="color:red"],
+	.chat-bubble.blue p[style="color:red"] {
+		font-weight: bold;
+	}
+
+	/* Estilos para o campo de entrada de mensagem */
+	.type-message {
+		margin-top: 20px;
+	}
+
+	.type-message textarea {
+		resize: none;
+	}
+
+	/* Estilos para o botão de envio */
+	.type-message button {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+
+
+
+  </style>
+
+</head>
+
+<body data-admin-utc-offset="0">
+
+<div class="video-background">
+	  <video autoplay loop muted>
+		  <source src="video_suroo.mp4" type="video/mp4">
+	  </video>
+</div>
+
+<div class="container">
+	<div class="frame-container" id="frame">
+		<div class="content-box col-md-12 text-center" id="head">
+			<img src="grupo-2386-2x.png" alt="Suroo Video Stream Plugin" id="header-image">
+			<h1>Video Stream Plugin
+			</h1>
+			<button class="btn btn-big btn-primary" autocomplete="off" id="start">Start</button>
+		</div>
+		
+		<div class="container hide" id="videojoin">
+			<div class="content-box col-md-12 text-center">
+				<img src="grupo-2386-2x.png" alt="Suroo Video Stream Plugin" id="join-image">
+				<div class="row justify-content-center">
+					<span class="label label-info" id="you"></span>
+					<div class="input-group hide" id="registernow">
+						<input autocomplete="off" class="form-control" autocomplete="off" type="text" placeholder="Choose a display name" id="username" onkeypress="return checkEnter(this, event);"></input>
+						<button class="btn btn-big btn-primary" autocomplete="off" id="register">Join the room</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid hide" id="videos">
+			<div class="video-container" id="video-local">
+				<div class="panel panel-default">
+					
+					<div class="panel-body" id="videolocal">
+						
+						<div class="top-button-container">
+							<!-- Botões são adicionados via JavaScript -->
+						</div>
+						<div class="button-container">
+							<!-- Botões são adicionados via JavaScript -->
+						</div>
+
+
+
+					</div>
+				</div>
+			</div>
+			<!-- Vídeo remoto -->
+			<div class="video-container hide" id="video-remoto">
+				<div class="panel panel-default">
+					<div class="panel-body relative" id="videoremote1">
+						<button id="toggle-view-2" class="btn btn-primary">
+							<i class="fas fa-exchange-alt"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Coluna de chat -->
+			<div class="chat-container" id="chat">
+				<!-- Botão de fechar o chat -->
+				<button id="close-chat" class="btn btn-xs">
+					<i class="fa fa-times"></i>
+				</button>
+				<div class="chat-content" >
+					
+						<!-- Mensagem do Embaixador -->
+						<div class="row">
+							<div class="col text-litle ">
+								<p ALIGN=RIGHT>(02/07/2024 15:23) Joseph Fouché .</p>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+								<div class="chat-wrapper">
+									<div class="chat-bubble blue right text-litle">
+										<p> Bonjour. Que faites-vous ici à notre centrale nucléaire ?</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Resposta do Espião Russo -->
+						<div class="row">
+							<div class="col text-litle ">
+								<p ALIGN=LEFT>. Moi (02/07/2024 15:24)</p>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+								<div class="chat-wrapper">
+									<div class="chat-bubble white left text-litle">
+										<p>Je suis ici pour assurer la sécurité, monsieur l'ambassadeur. Il n'y a rien à craindre.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Mensagem do Embaixador -->
+						<div class="row">
+							<div class="col text-litle ">
+								<p ALIGN=RIGHT>(02/07/2024 15:25) Joseph Fouché .</p>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+								<div class="chat-wrapper">
+									<div class="chat-bubble blue right text-litle">
+										<p >Sécurité, dites-vous ? Vos intentions semblent suspectes.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Resposta do Espião Russo -->
+						<div class="row">
+							<div class="col text-litle ">
+								<p ALIGN=LEFT>. Moi (02/07/2024 15:26)</p>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+									<div class="chat-bubble white left text-litle">
+										<p>Je vous assure, nous voulons seulement la coopération et la paix. Il est important de protéger les infrastructures critiques.</p>
+									</div>
+							</div>
+						</div>
+					
+						<!-- Mensagem do Embaixador -->
+						<div class="row">
+							<div class="col text-litle ">
+								<p ALIGN=RIGHT>(02/07/2024 15:27) Joseph Fouché .</p>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+									<div class="chat-bubble blue right text-litle">
+										<p >Très bien, mais nous devons rester vigilants. La sécurité de notre pays est primordiale.</p>
+									</div>
+							</div>
+						</div>
+					
+						<!-- Resposta do Espião Russo -->
+						<div class="row">
+							<div class="col text-litle ">
+								<p ALIGN=LEFT>. Moi (02/07/2024 15:28)</p>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col">
+									<div class="chat-bubble white left text-litle">
+										<p>Bien sûr. Nous sommes ici pour aider, pas pour nuire.</p>
+									</div>
+							</div>
+						</div>
+					
+						<!-- Campo de entrada de mensagem -->
+						<div class="row">
+							<div class="col">
+								<div class="input-group type-message">
+									<textarea id="message_text1234" cols="40" rows="4" class="form-control" placeholder="Type a message" aria-label="Type a message"></textarea>
+									<div class="input-group-append">
+										<button onclick="post_message(1234, unread)" class="btn btn-outline-secondary" type="button"><i class="bi bi-arrow-bar-right"></i></button>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

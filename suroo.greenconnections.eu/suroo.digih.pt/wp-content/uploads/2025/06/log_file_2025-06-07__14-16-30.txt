@@ -1,0 +1,35 @@
+
+---Downloaded files---
+The import files for: Startup were successfully downloaded!
+Initial max execution time = 60
+Files info:
+Site URL = https://suroo.greenconnections.eu
+Data file = /home/digihpt1/suroo.greenconnections.eu/wp-content/plugins/webify-addons//includes/demos/startup/demo-content.xml
+Widget file = /home/digihpt1/suroo.greenconnections.eu/wp-content/plugins/webify-addons//includes/demos/startup/widgets.json
+Customizer file = not defined!
+Redux files:
+not defined!
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+[ERROR] Failed to import "event.WordPress.2019-07-16.xml_.txt" (Multimédia)
+
+
+---Importing widgets---
+Main Sidebar : 
+
+Pesquisar - No Title - Imported
+Artigos recentes - No Title - Imported
+Comentários recentes - No Title - Imported
+Arquivo - No Title - Imported
+Categorias - No Title - Imported
+Meta - No Title - Imported
+
+
+
+---ocdi/after_import---
+
