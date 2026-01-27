@@ -1,0 +1,7 @@
+<script>
+    $('#form-modalSignup').modal('hide'); 
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+    window.location = ".";
+</script>

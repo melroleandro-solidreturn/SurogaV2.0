@@ -1,0 +1,1 @@
+[{"model": "core.local", "pk": 1, "fields": {"Municipality": "Sintra", "District": "Lisboa", "Country": 1}}, {"model": "core.local", "pk": 2, "fields": {"Municipality": "Cascais", "District": "Lisboa", "Country": 1}}, {"model": "core.local", "pk": 3, "fields": {"Municipality": "Lisboa", "District": "Lisboa", "Country": 1}}]

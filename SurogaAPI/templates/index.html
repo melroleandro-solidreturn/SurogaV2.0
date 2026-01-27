@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+   
+    <!--HOME SECTION-->
+    <div class="container" id="home">
+        <div class="row text-center scrollclass">
+            <div class="col-md-12">
+                <span class="head-main">Suroga API</span>
+                <h3 class="head-last">Building bridges between the real and the virtual world using video streaming.</h3>
+                <h5 class="head-last">Find surrogates for you or for your clients in the real world anywhere using our API. </h5>
+                <h5 class="head-last">Do not lose sight of the things you and your clients care about. </h5>
+                <!-- a href="#about" ><img src="img/logo.png" alt="" class="img-center image-responsive"/></a -->
+            </div>
+        </div>
+    </div>
+    <!--END HOME SECTION-->
+
+    <!--ABOUT SECTION-->
+    <section class="for-full-back color-bg-one" id="services">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-8 col-md-offset-2 ">
+                    <h1>The Service</h1>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-8 col-md-offset-2 ">
+                        <h5>
+                         <p>If your business or your clients need to have a pair of eyes elsewhere we can provide it.
+                            We can find people to do video streams on conferences, parties and workshops.
+                            We can help to control places and things from the comfort of your office. 
+                            Do you whant to do a new investment? Consider to give a look at its surroundings.
+                        </p>
+                        <p>
+                            Why spend time and money on trips if we can find someone to surrogate you?
+                        </p>
+                        <p>
+                            Suroga API offers a set of endpoints to automatize the process of finding surrogates.
+                        </p>
+                        <p>
+                            Bring a pair of eyes to your APP.
+                        </p>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="for-full-back color-white" id="about-team">
+        <div class="container">
+            
+            <div class="row text-center g-pad-bottom">
+              
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <h3><strong>Pre-Registration</strong></h3>
+
+                    <div class="team-member">
+                    
+                            <img src="{% static 'img/data-aquisition.png'%}" class="img-circle"    alt="">
+                        
+                    </div>
+                    <div class="alert alert-info">
+                        With the Suroga API, you can pre-register rides worldwide using our APP.
+                        After the pre-registration, we start searching for your surrogate on the fly.
+                        When you book the ride a surrogate will be available at the selected place.
+                    </div>
+                    
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-6">
+
+                        <h3><strong>Booking</strong></h3>
+                        
+
+                        <div class="team-member">
+                        
+                                <img src="{% static 'img/monitor.png'%}" class="img-circle"    alt="">
+                                
+                        </div>
+                        <div class="alert alert-info">
+                            The booking process consists of defining the date and time for a ride using the Suroga API.
+                            We have a worldwide network of partners committed to finding the right surrogates.
+                            We enshore a person to do a video stream fuffiling your requisites.
+                            
+                        </div>
+                        
+                </div>
+                  
+                <div class="col-md-3 col-sm-3 col-xs-6">
+
+                    <h3><strong>Streaming</strong></h3>
+
+                    <div class="team-member">
+                    
+                            <img src="{% static 'img/Automation-Icon.png'%}" class="img-circle"    alt="">
+                            
+                    </div>
+                    <div class="alert alert-info">
+                        
+                        We selected Microsoft as our video stream provider.
+                        The stream of your rides is deployed using Microsoft teams.
+                        Every time a ride is booked we provide a virtual room where you or your clients can meet with the selected surrogate. 
+                    </div>
+                    
+                </div>
+    
+                <div class="col-md-3 col-sm-3 col-xs-6">
+
+                    <h3><strong>Monitoring</strong></h3>
+                    
+                    <div class="team-member">
+                    
+                            <img src="{% static 'img/model-icon.png'%}" class="img-circle"    alt="">
+                            
+                            
+                    </div>
+                    <div class="alert alert-info">
+                        Every APP registered with our API has a dashboard. 
+                        Here you can find your API Key and API calls statistics.
+                        In this dashboard, you have also access to your billing board.
+                    </div>
+                        
+                </div>
+
+            </div>
+           
+
+        </div>
+    </section>
+    <!--END ABOUT SECTION-->
+    
+    
+    
+    
+    <!--END TECH SECTION-->
+    <!--PROJECTS SECTION-->
+    
+    <!--END PROJECTS SECTION-->
+   
+    <!--CONTACT SECTION-->
+    <section class="for-full-back color-bg-one" id="contact">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-8 col-md-offset-2 ">
+                    <h1>Contact</h1>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-8 col-md-offset-2 ">
+                        <h5>
+                            We're always happy to talk through our products and services in more 
+                            detail. So whether you'd like to book an appointment or simply find 
+                            out more information, please get in touch using either method below.
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="for-full-back color-white text-center" id="contact-inner">
+        <div class="container">
+   
+            <div id="add">
+                    <br />
+                    <img src="{% static 'img/project/contact.png'%}"  alt="" />
+                                    
+            </div>
+              
+        </div>
+    </section>
+    <!--END CONTACT SECTION-->
+    {% endblock %}
+    
+    <!-- END FOOTER SECTION -->
+    {% block extra_js %}
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY  -->
+    <!-- >script src="assets/plugins/jquery-1.10.2.js"></script -->
+    <!-- script src="https://code.jquery.com/jquery-2.1.3.min.js"></script -->
+    <!-- BOOTSTRAP CORE SCRIPT   -->
+    <script src="{% static 'plugins/bootstrap.js'%}"></script>  
+    <!-- VEGAS SLIDESHOW SCRIPTS -->
+    <!-- >script src="assets/plugins/vegas/jquery.vegas.min.js"></script-->
+    <script src="{% static 'js/vegas.min.js'%}"></script>
+    <!-- script src="https://jaysalvat.github.io/vegas/releases/latest/vegas.min.js"></script -->
+     <!-- SCROLL SCRIPTS -->
+    <script src="{% static 'plugins/jquery.easing.min.js'%}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'js/custom.js'%}"></script>
+    {% endblock extra_js %}

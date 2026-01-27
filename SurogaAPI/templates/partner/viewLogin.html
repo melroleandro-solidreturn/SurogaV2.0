@@ -1,0 +1,33 @@
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as languages %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info for LANGUAGE_CODE as lang %}
+
+<div class="container">
+    <div class="form-group row">
+        <label for="Registration" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Operation Type"  %}:</label>
+        <div class="col-sm-9">
+        <input name="Registration" type="text" value="{{ item.RegistrationDate }}"  readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="IP" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "IP"  %}:</label>
+        <div class="col-sm-9">
+        <input name="IP" type="text" value="{{ item.IP }}" readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="local" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Local"  %}:</label>
+        <div class="col-sm-9">
+        <input name="local" type="text" value="{{ item.local }}"  readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="country" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Country"  %}:</label>
+        <div class="col-sm-9">
+        <input name="country" type="text" value="{{ item.country }}"  readonly> 
+        </div>
+    </div>
+</div>
