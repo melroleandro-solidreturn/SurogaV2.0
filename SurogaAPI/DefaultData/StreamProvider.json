@@ -1,1 +1,0 @@
-[{"model": "core.streamprovider", "pk": 1, "fields": {"Name": "Zoom"}}, {"model": "core.streamprovider", "pk": 2, "fields": {"Name": "Microsoft® Teams"}}, {"model": "core.streamprovider", "pk": 3, "fields": {"Name": "Google Meet"}}, {"model": "core.streamprovider", "pk": 4, "fields": {"Name": "Amazon Chime"}}]
