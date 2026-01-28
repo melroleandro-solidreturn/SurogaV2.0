@@ -1,0 +1,1 @@
+[{"model": "core.videocodec", "pk": 1, "fields": {"Name": "VP8", "Browsercompatibility": "Chrome, Edge, Firefox, Safari (12.1+)"}}, {"model": "core.videocodec", "pk": 2, "fields": {"Name": "AVC (H.264)", "Browsercompatibility": "Chrome (52+), Edge, Firefox, Safari"}}]

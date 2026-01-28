@@ -1,0 +1,42 @@
+{% load static %}
+{% load i18n %}
+
+{% language  request.session.code  %}
+<p style="padding-bottom: 1cm;"></p>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <form method="post" class="form-horizontal" action="{% url 'partner:login' %}" id="loginform"> 
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                    {{ field }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <p style="color: red">{{ form.username.errors }} </p>   
+            <p style="color: red">{{ form.password.errors }} </p>  
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">    
+                <input type="submit" value = '{% trans "Continue" %}' class="btn btn-green btn-block">
+                <input type="hidden" name="next" value="{{ next }}" >
+                </div>
+            </div>        
+        </form>
+    </div>                             
+</div>
+{% endlanguage %}
+
+<script>
+   
+    var form_options = {
+        target: '#form-modal-body-body',
+    }
+    $('#loginform').ajaxForm(form_options);
+    
+</script>

@@ -1,0 +1,35 @@
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as languages %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info for LANGUAGE_CODE as lang %}
+
+<table id="tableRequests" style="width:100%">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Request</th>
+            <th>IP</th>
+            <th></th>
+          </tr>
+    </thead>
+    <tbody>
+        {% for pk, data, type, request, ip in EventLog %}
+        <tr>
+            <td>{{ data }}</td>
+            <td>{{ type }}</td>
+            <td>{{ request }}</td>
+            <td>{{ ip }}</td>
+            <td>
+                <button onclick="viewRequest( '{{ pk }}')"  class="col btn btn-green text-litle custom-buton text-center">{% trans "View" %}</button> 
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>{% trans "Empty" %}</td>
+         </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,1 @@
+[{"model": "core.country", "pk": 1, "fields": {"Name": "Portugal", "Currency": 1, "Language": 1, "PhoneCode": "+351", "time_zone": 2, "VAT": "23.00", "GPS_latitude": "39.44879136", "GPS_longitude": "-8.03768042", "ZoomLevel": 6, "GoogleCode": "PT"}}]

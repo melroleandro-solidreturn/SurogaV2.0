@@ -1,0 +1,18 @@
+(function() {
+
+    window.onload = function() {
+      var widget_link, iframe, i, widget_links;
+      widget_links = document.getElementsByClassName('suroga-booking-widget');
+      for (i = 0; i < widget_links.length; i++) {
+        widget_link = widget_links[i];
+        iframe = document.createElement('iframe');
+        iframe.setAttribute('src', widget_link.href + "/widget");
+        iframe.setAttribute('width', '300');
+        iframe.setAttribute('height', '300');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('scrolling', 'no');
+        widget_link.parentNode.replaceChild(iframe, widget_link);
+      }
+    };
+  
+  })();

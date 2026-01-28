@@ -1,0 +1,1 @@
+[{"model": "core.language", "pk": 1, "fields": {"Name": "Português", "Code": "pt"}}, {"model": "core.language", "pk": 2, "fields": {"Name": "English", "Code": "en"}}]

@@ -1,0 +1,64 @@
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as languages %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info for LANGUAGE_CODE as lang %}
+
+<div class="container">
+    <div class="form-group row">
+        <label for="Registration" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Date"  %}:</label>
+        <div class="col-sm-9">
+        <input name="Registration" type="text" value="{{ item.RegistrationDate }}"  readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="OperationType" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Operation Type"  %}:</label>
+        <div class="col-sm-9">
+        <input name="OperationType" type="text" value="{{ item.OperationType }}"  readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="SettlementDate" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Settlement Date"  %}:</label>
+        <div class="col-sm-9">
+        <input name="SettlementDate" type="text" value="{{ item.OperationType }}" readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="PaymMethodResul" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "PaymMethod Resul"  %}:</label>
+        <div class="col-sm-9">
+        <input name="PaymMethodResul" type="text" value="{{ item.PaymMethodResul }}"  readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="StripTransactionID" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Strip Transaction ID"  %}:</label>
+        <div class="col-sm-9">
+        <input name="StripTransactionID" type="text" value="{{ item.StripTransactionID }}"  readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="SurooBankTransactionID" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Suroo Bank Transaction ID"  %}:</label>
+        <div class="col-sm-9">
+        <input name="SurooBankTransactionID" type="text" value="{{ item.SurooBankTransactionID }}"  readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Ride" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Ride"  %}:</label>
+        <div class="col-sm-9">
+        <input name="Ride" type="text" value="{{ item.Ride.pk }}"  readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Booking" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Booking"  %}:</label>
+        <div class="col-sm-9">
+        <input name="Booking" type="text" value="{{ item.Ride.pk }}"  readonly> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Value" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Value"  %}:</label>
+        <div class="col-sm-9">
+        <input name="Value" type="number" value="{{ item.Value}}" readonly> 
+        </div>
+    </div>
+
+</div>

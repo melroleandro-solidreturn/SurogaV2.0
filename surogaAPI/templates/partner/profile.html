@@ -1,0 +1,384 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% get_available_languages as languages %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info for LANGUAGE_CODE as lang %}
+
+{% block styles %}
+
+<style type="text/css">
+    
+    .navbar-custom {
+        color: #FFFFFF;
+        background-color: #133d06;
+    }
+    
+    #customBtn {
+          display: inline-block;
+          background: white;
+          color: #444;
+          border-radius: 5px;
+          border: thin solid #888;
+          box-shadow: 1px 1px 1px grey;
+          white-space: nowrap;
+        }
+        #customBtn:hover {
+          cursor: pointer;
+        }
+        span.label {
+          font-family: serif;
+          font-weight: normal;
+        }
+        span.icon {
+          background: url("{% static 'img/g-normal.png' %}") transparent 5px 50% no-repeat;
+          display: inline-block;
+          vertical-align: middle;
+          width: 40px;
+          height: 40px;
+        }
+        span.buttonText {
+          display: inline-block;
+          vertical-align: middle;
+          padding-left: 40px;
+          padding-right: 40px;
+          font-size: 10px;
+          font-weight: bold;
+          /* Use the Roboto font that is loaded in the <head> */
+          /*font-family: 'Roboto', sans-serif;*/
+        }
+    
+        .custom {
+            color: #FFFFFF;
+            background-color: #133d06;
+        }
+    
+        .custom-table {
+            color: #FFFFFF;
+            background-color: #133d06;
+            margin-bottom: 1px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        
+    
+        .custom-table-value {
+            color: #050505;
+            background-color: #aaeb60;
+            margin-bottom: 1px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            padding: 5px;
+        }
+    
+        .custom-buton {
+            margin-bottom: 1px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            padding: 5px;
+        }
+    
+    
+    
+    .panel {
+      margin-bottom: 1px;
+      background-color: #fff;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+              box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+    .panel-body {
+      padding: 15px;
+    }
+    .panel-heading {
+      padding: 15px 20px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+    .panel-heading > .dropdown .dropdown-toggle {
+      color: inherit;
+    }
+    .panel-title {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 16px;
+      color: inherit;
+    }
+    .panel-title > a {
+      color: inherit;
+    }
+    
+    .panel-flashy > .panel-heading {
+      color: #ddd;
+      background-color:  #133d06;
+      border-color: #133d06;
+    }
+    .panel-flashy > .panel-title {
+      color: #ddd;
+    }
+    
+    .panel-sub > .panel-heading {
+      color: #050505;
+      background-color:  #2cad04;
+      border-color: #2cad04;
+    }
+    .panel-sub > .panel-title {
+      color: #050505;
+    }
+    
+    .text-litle {
+      font-size: 80%;
+    }
+    
+    .text-big {
+      font-size: 200%;
+    }
+    
+    table,
+    td {
+        border: 1px solid #333;
+    }
+
+    thead,
+    tfoot {
+        background-color: #333;
+        color: #fff;
+    }
+
+    @media only screen and (max-width: 900px) {
+        .one{
+            display: none;
+        }
+    }
+    
+
+    </style>
+{% endblock %}
+
+{% block content %}
+{% language  code  %}
+<p style="padding-bottom: 3cm;"></p>
+<!-- dashboard content -->
+<div class="page-wrapper panel-group" id="accordion">
+    <div class="container">
+        <h1 class="modal-title text-center">{% trans "Update App profile" %}</h1>
+        <p style="padding-bottom: .5cm;"></p> 
+        <form id="profile" method="post" class="form-horizontal" action="{% url 'partner:profile-update' pk %}"> 
+        {% csrf_token %}
+            <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "E-mail"  %}:</label>
+                <div class="col-sm-7">
+                <input name="email" type="text" value="{{ user.email }}" style="width: 100%;" readonly> 
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="Name" class="col-sm-3 col-form-label" style="text-align: right;" >{% trans "App name"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.Name }}
+                </div>
+                <p style="color: red">{{ form.Name.errors }} </p> 
+            </div>
+            <div class="form-group row">
+                <label for="Observation" class="col-sm-3 col-form-label" style="text-align: right;" >{% trans "App description"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.Observation }}
+                </div>
+                <p style="color: red">{{ form.Observation.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <label for="Address" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Address"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.Address }}
+                </div>
+                <p style="color: red">{{ form.Address.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <label for="Zip_Code" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Zip Code"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.Zip_Code }}
+                </div>
+                <p style="color: red">{{ form.Zip_Code.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <label for="City" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "City"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.City }}
+                </div>
+                <p style="color: red">{{ form.City.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <label for="Country" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Country"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.Country }}
+                </div>
+                <p style="color: red">{{ form.Country.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <label for="Language" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Language"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.Language }}
+                </div>
+                <p style="color: red">{{ form.Language.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <label for="Telephone" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Telephone"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.Telephone }}
+                </div>
+                <p style="color: red">{{ form.Telephone.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <label for="ITIN" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "ITIN"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.ITIN }}
+                </div>
+                <p style="color: red">{{ form.ITIN.errors }} </p> 
+            </div>
+
+            <!-- div class="form-group row">
+                <label for="IBAN" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Telephone"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.IBAN }}
+                </div>
+                <p style="color: red">{{ form.IBAN.errors }} </p> 
+            </div -->
+
+            <div class="form-group row">
+                <label for="Website" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Website"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.Website }}
+                </div>
+                <p style="color: red">{{ form.Website.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <label for="Google_play" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Google Play URL"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.Google_play }}
+                </div>
+                <p style="color: red">{{ form.Google_play.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <label for="Apple_store" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Apple Store URL"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.Apple_store }}
+                </div>
+                <p style="color: red">{{ form.Apple_store.errors }} </p> 
+            </div>
+        
+            <div class="form-group row">
+                <label for="API_activated" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "API activated"  %}:</label>
+                <div class="col-sm-7">
+                    <input name="API_activated" type="text" value="{{ partner.API_activated }}" readonly> 
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    {% if not partner.API_activated %}
+                    <button  onclick="APIactivation()"  class="col btn btn-green btn-block noradius">{% trans "API Activation" %}</button> 
+                    {% endif %}
+                </div>
+            </div>
+            
+            {% if partner.API_activated %}
+
+                <div class="form-group row">
+                    <label for="API_Key" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "API key"  %}:</label>
+                    <div class="col-sm-7">
+                        <input name="API_Key" type="text" value="{{ partner.HashKey }}" style="width: 100%;" readonly> 
+                        
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3">
+                        {% if partner.API_test_mode %}
+                        <button  onclick="APIproduction()"  class="col btn btn-green btn-block noradius">{% trans "Prodution mode activation" %}</button> 
+                        {% else %}
+                        <button  onclick="APItest()"  class="col btn btn-orange btn-block noradius">{% trans "Return to test mode activation" %}</button>                        
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-3">
+                        <button  onclick="APIkeyReset()"  class="col btn btn-red btn-block noradius">{% trans "API key reset" %}</button> 
+                    </div>
+                </div>
+                {% if partner.API_test_mode %}
+                <div class="form-group row">
+                    <label for="test_mode" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Mode"  %}:</label>
+                    <div class="col-sm-7">
+                        <input name="test_mode" type="text" value="Test" style="width: 100%;" readonly> 
+                    </div>
+                </div>
+                {% else %}
+                <div class="form-group row">
+                    <label for="test_mode" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "Mode"  %}:</label>
+                    <div class="col-sm-7">
+                        <input name="test_mode" type="text" value="Prodution" style="width: 100%;" readonly> 
+                    </div>
+                </div>
+                {% endif %}
+            {% endif %}
+
+            <div class="form-group row">
+                <label for="APP_domain" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "APP domain"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.APP_domain }}
+                </div>
+                <p style="color: red">{{ form.APP_domain.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <label for="webwooks_suroo" class="col-sm-3 col-form-label" style="text-align: right;">{% trans "webwooks_suroo"  %}:</label>
+                <div class="col-sm-7">
+                    {{ form.webwooks_suroo }}
+                </div>
+                <p style="color: red">{{ form.webwooks_suroo.errors }} </p> 
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <button  onclick="close_account()"  class="col btn btn-red btn-block noradius">{% trans "Close account" %}</button> 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                    <a  onclick="change_pw()" class="btn btn-gray  btn-block noradius" role="button">{% trans "Change Password"  %}</a>
+                </div>
+                <div class="col-sm-3">
+                    <a onclick="change_email()" role="button"  class="btn btn-gray  btn-block noradius" >{% trans "Change Email"  %}</a>
+                </div>
+                <div class="col-sm-3">    
+                <input type="submit" value = "{% trans 'Save' %}" class="btn btn-green btn-block">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<p style="padding-bottom: .5cm;"></p>
+{% endlanguage %}
+<script >
+function change_pw() {
+    $('#generic-modal-body-body').load("/partner/password/", function () {
+            $('#generic-modal').modal('show');
+        });
+    };
+</script>
+{% endblock %}
